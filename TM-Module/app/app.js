@@ -9,7 +9,7 @@
   let flippedVideo;
   // To store the classification
   let label = "";
-
+  let confidence = "";
   // Load the model first
   function preload() {
     classifier = ml5.imageClassifier(imageModelURL + 'model.json');
@@ -36,7 +36,7 @@
     fill(255);
     textSize(16);
     textAlign(CENTER);
-    text(label, width / 2, height - 4);
+    text(label + " : " + confidence, width / 2, height - 4);
   }
 
   // Get a prediction for the current video frame
@@ -57,6 +57,7 @@
     // The results are in an array ordered by confidence.
     // console.log(results[0]);
     label = results[0].label;
+    confidence = results[0].confidence;
     console.log(`Label ${label} Confidence ${results[0].confidence}`);
     ws.send(label);
     // Classifiy again!

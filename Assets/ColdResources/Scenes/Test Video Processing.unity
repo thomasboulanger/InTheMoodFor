@@ -642,8 +642,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374c651dd196acb43911ccfe3edc7644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionValidationAmount: 20
+  OnRuneValidated:
+    m_PersistentCalls:
+      m_Calls: []
+  _validationAmount: 20
+  _releaseAmount: 20
   _validationBreakerAmount: 5
+  _isValidatingInput: 0
+  _isWaitingForRelease: 0
+  _bufferedRune: 0
+  _validationProgress: 0
+  _releaseProgress: 0
+  _validationBreakerProgress: 0
 --- !u!114 &968121328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,19 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnMessageReceived:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 968121327}
-        m_TargetAssemblyTypeName: TestWS, Assembly-CSharp
-        m_MethodName: OnMessage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _isWsOpen: 0
   _showLogs: 0
 --- !u!1 &1240309396
