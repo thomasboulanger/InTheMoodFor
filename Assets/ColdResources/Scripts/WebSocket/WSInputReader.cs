@@ -1,15 +1,12 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-[RequireComponent(typeof(WSConnection))]
-public class WSInputReader : MonoBehaviour
+[CreateAssetMenu(menuName = "WS Input Reader")]
+public class WSInputReader : ScriptableObject
 {
-    public UnityEvent<RuneType> OnRuneValidated;
-
-    WSConnection wsConnection;
+    public Action<RuneType> OnRuneValidated;
+    public Action OnRuneGone;
 
     public const string WATER = "eau";
     public const string FIRE = "feu";
@@ -31,17 +28,7 @@ public class WSInputReader : MonoBehaviour
         _releaseProgress = 0,
         _validationBreakerProgress = 0;
 
-    private void Awake()
-    {
-        wsConnection = GetComponent<WSConnection>();
-    }
-
-    void Start()
-    {
-        wsConnection.OnMessageReceived.AddListener(OnMessage);
-    }
-
-    public void OnMessage(string message)
+    public void ReadMessage(string message)
     {
         Process(message);
     }
@@ -91,6 +78,7 @@ public class WSInputReader : MonoBehaviour
         {
             _isWaitingForRelease = false;
             _bufferedRune = RuneType.None;
+            OnRuneGone?.Invoke();
         }
         else if (_isValidatingInput)
         {
