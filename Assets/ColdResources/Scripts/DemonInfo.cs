@@ -2,30 +2,31 @@ using UnityEngine;
 
 public class DemonInfo : MonoBehaviour
 {
+    private RuneType _type;
+    private Animator _animator;    
     private bool IsRuned;
-    private float _timerToLose;
+    private bool _gameOver;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if (IsRuned)
         {
-            transform.GetComponent<Animation>(); // pause animation
+            _animator.speed = 0;
         }
         else
         {
-            transform.GetComponent<Animation>(); // jouer l'animation
-            _timerToLose -= Time.deltaTime;
+            _animator.speed = 1;
         }
-
-        if (_timerToLose <= 0) GameOver();
+        
     }
 
-    public void Init(float timeBeforeLose)
+    public void HasFinishedAnimation()
     {
-        _timerToLose = timeBeforeLose;
-    }
-
-    private void GameOver()
-    {
+        
     }
 }

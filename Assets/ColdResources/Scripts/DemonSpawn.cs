@@ -45,6 +45,6 @@ public class DemonSpawn : MonoBehaviour
         GameObject go = Instantiate(_demonPrefab[index], _usableSpawnPoints[rnd].transform.position, quaternion.identity);
         _usableSpawnPoints.RemoveAt(rnd);
         DemonList.Add(go); 
-        go.GetComponent<DemonInfo>().Init(_demonAnimationTime);
+        go.transform.LookAt(gameObject.transform);
     }
 }
