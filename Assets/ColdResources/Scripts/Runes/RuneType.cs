@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public enum RuneType
@@ -11,6 +10,20 @@ public enum RuneType
     Stone = 4
 }
 
-public static class Rune
+public class Rune
 {
+    public RuneType Type;
+    public float birthTime;
+    public bool IsActive, IsFading;
+
+    public Rune(RuneType type)
+    {
+        if (type == RuneType.None)
+            throw new Exception("Rune was initialized with a None type");
+
+        Type = type;
+        birthTime = Time.time;
+        IsActive = true;
+        IsFading = false;
+    }
 }

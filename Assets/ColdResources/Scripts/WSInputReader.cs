@@ -69,7 +69,7 @@ public class WSInputReader : MonoBehaviour
             else
             {
                 _validationBreakerProgress++;
-                _validationProgress--;
+                if(_validationProgress>0) _validationProgress--;
             }
         }
 

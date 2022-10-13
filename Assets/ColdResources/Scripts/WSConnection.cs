@@ -9,8 +9,11 @@ public class WSConnection : MonoBehaviour
 
     WebSocket websocket = null;
     [SerializeField, ReadOnly] bool _isWsOpen = false;
+    [SerializeField, ReadOnly] bool _tryReopening = false;
+    bool _openInstructionCalled = false;
     
     [SerializeField] bool _showLogs = false;
+    [SerializeField, ShowIf("_showLogs")] bool _showMessages = false;
 
     // Open the websocket communication on the configured port
     async void Start()
@@ -20,7 +23,10 @@ public class WSConnection : MonoBehaviour
     void Update()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
-        if (_isWsOpen)
+        if (_tryReopening && !_openInstructionCalled)
+            AsyncOpenWS();
+            
+        if (_isWsOpen && !_openInstructionCalled)
             websocket.DispatchMessageQueue();
 #endif
     }
@@ -43,23 +49,31 @@ public class WSConnection : MonoBehaviour
 
         websocket.OnOpen += () =>
         {
-            if(_showLogs) Debug.Log("Connection open!");
+            if (_showLogs) Debug.Log("Connection open!");
+            _openInstructionCalled = false;
+            _tryReopening = false;
+            _isWsOpen = true;
         };
 
         websocket.OnError += (e) =>
         {
             if (_showLogs) Debug.Log("Error! " + e);
+
         };
 
         websocket.OnClose += (e) =>
         {
             if (_showLogs) Debug.Log("Connection closed!");
+
+            _openInstructionCalled = false;
+            _tryReopening = true;
+            _isWsOpen = false;
         };
 
         websocket.OnMessage += (bytes) =>
         {
             string message = System.Text.Encoding.UTF8.GetString(bytes);
-            if (_showLogs)
+            if (_showLogs && _showMessages)
             {
                 Debug.Log($"OnMessage: {message}");
             }
@@ -68,9 +82,8 @@ public class WSConnection : MonoBehaviour
         };
 
         // Keep sending messages at every 0.3s
-        InvokeRepeating("SendWebSocketMessage", 0.0f, 0.3f);
-
-        _isWsOpen = true;
+        //InvokeRepeating("SendWebSocketMessage", 0.0f, 0.3f);
+        _openInstructionCalled = true;
         // waiting for messages
         await websocket.Connect();
     }
@@ -80,8 +93,8 @@ public class WSConnection : MonoBehaviour
     /// </summary>
     async void AsyncCloseWS()
     {
-        await websocket.Close();
         _isWsOpen = false;
+        await websocket.Close();
         websocket = null;
     }
 
@@ -118,6 +131,7 @@ public class WSConnection : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
+        _isWsOpen = false;
         await websocket.Close();
     }
 }
