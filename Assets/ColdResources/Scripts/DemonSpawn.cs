@@ -1,42 +1,50 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DemonSpawn : MonoBehaviour
 {
     public static List<GameObject> DemonList = new List<GameObject>();
 
-
-    [SerializeField] private float _spawnDelay = 2f;
-    [SerializeField] private List<int> _demonElementList = new List<int>();
+    [SerializeField] private LevelConfig _levelConfig;
     [SerializeField] private GameObject[] _demonPrefab;
-    [SerializeField] private int _nbDemon = 8;
-
+    [SerializeField] private float _demonAnimationTime;
+    
+    private List<GameObject> _spawnPoints = new List<GameObject>();
+    private List<GameObject> _usableSpawnPoints;
     private int _demonElementIndex;
     private int _demonCounter;
-    private float _delayTimer;
-    
-    void Start()
+    private float _startTime;
+    private int _dayCounter;
+
+
+    private void Start()
     {
-        DemonList.Add(gameObject);
+        _startTime = Time.time;
+        foreach (GameObject element in GameObject.FindGameObjectsWithTag("SpawnPoint"))
+        {
+            _spawnPoints.Add(element);
+        }
+        _usableSpawnPoints = _spawnPoints;
     }
 
-    void Update()
+    private void Update()
     {
-        float deltaTime = Time.deltaTime;
-        _delayTimer += deltaTime;
-        if (_delayTimer >= _spawnDelay && _demonCounter < _nbDemon)
+        float currentTime = Time.time - _startTime;
+        if (_demonCounter < _levelConfig.DemonSpawnTimer.Count && currentTime >= _levelConfig.DemonSpawnTimer[_demonCounter])
         {
-            Debug.Log("spawn");
-            _delayTimer = 0;
-            SpawnDemon(_demonElementList[_demonElementIndex]);
-            _demonElementIndex++;
+            SpawnDemon(_levelConfig.DemonOrderOfElement[_demonCounter]);
             _demonCounter++;
         }
     }
 
     private void SpawnDemon(int index)
     {
-        GameObject go = Instantiate(_demonPrefab[index], new Vector3(-10 + _demonCounter, 1, 0), quaternion.identity);
+        int rnd = Random.Range(0, _usableSpawnPoints.Count);
+        GameObject go = Instantiate(_demonPrefab[index], _usableSpawnPoints[rnd].transform.position, quaternion.identity);
+        _usableSpawnPoints.RemoveAt(rnd);
+        DemonList.Add(go);
+       // go.GetComponent<DemonInfo>().Init(_demonAnimationTime);
     }
 }

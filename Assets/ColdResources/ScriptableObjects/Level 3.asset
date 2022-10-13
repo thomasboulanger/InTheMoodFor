@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4ccd9f75f1db045a9a0cfabb03b86a, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  DemonSpawnTimer: 040000000700000026000000320000006e000000930000009400000099000000a0000000a4000000ae000000
+  DemonOrderOfElement: 0200000003000000010000000000000000000000020000000100000000000000010000000300000002000000
