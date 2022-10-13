@@ -44,7 +44,7 @@ public class DemonSpawn : MonoBehaviour
         int rnd = Random.Range(0, _usableSpawnPoints.Count);
         GameObject go = Instantiate(_demonPrefab[index], _usableSpawnPoints[rnd].transform.position, quaternion.identity);
         _usableSpawnPoints.RemoveAt(rnd);
-        DemonList.Add(go);
-       // go.GetComponent<DemonInfo>().Init(_demonAnimationTime);
+        DemonList.Add(go); 
+        go.GetComponent<DemonInfo>().Init(_demonAnimationTime);
     }
 }

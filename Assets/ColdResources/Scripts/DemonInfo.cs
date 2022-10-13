@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class DemonInfo : MonoBehaviour
 {
-    [HideInInspector] public bool IsRuned;
-
-
+    private bool IsRuned;
     private float _timerToLose;
 
     private void Update()
