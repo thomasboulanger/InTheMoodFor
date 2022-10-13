@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a11c2feb319e924599753a7eac0ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnDelay: 20
+  _spawnDelay: 0.5
   _demonElementList: 0000000001000000020000000300000000000000010000000200000003000000
   _demonPrefab:
   - {fileID: 1086405580982925241, guid: b313c9da3b3e13e448e9ddcf33af9d04, type: 3}

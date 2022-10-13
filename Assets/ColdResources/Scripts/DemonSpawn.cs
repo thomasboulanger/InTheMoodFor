@@ -25,7 +25,7 @@ public class DemonSpawn : MonoBehaviour
     {
         float deltaTime = Time.deltaTime;
         _delayTimer += deltaTime;
-        if (_delayTimer >= _spawnDelay && _demonCounter <= _nbDemon)
+        if (_delayTimer >= _spawnDelay && _demonCounter < _nbDemon)
         {
             Debug.Log("spawn");
             _delayTimer = 0;
