@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/ColdResources/Scenes/Setup.unity
-    guid: 81c6cbce3dd71ee40ad9387694088a6f
+    guid: 4465e46aeccc00b4aa0c8b5c4f7e2099
   - enabled: 1
     path: Assets/ColdResources/Scenes/Lobby.unity
     guid: a6f7b6295f4b3f94fb69664fe7d6db11

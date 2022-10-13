@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class RuneHandler : MonoBehaviour
 {
+    [SerializeField] WSInputReader _inputReader;
     public UnityEvent<Rune> OnRuneSpawned, OnRuneStartFading, OnRuneDespawned;
 
     [SerializeField]
@@ -17,6 +16,7 @@ public class RuneHandler : MonoBehaviour
     private void Start()
     {
         ActiveRunes = new List<Rune>();
+        _inputReader.OnRuneValidated += SpawnRune;
     }
 
     private void Update()
