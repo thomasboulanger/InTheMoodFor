@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ColdResources/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/ColdResources/Scenes/Lobby.unity
+    guid: a6f7b6295f4b3f94fb69664fe7d6db11
+  - enabled: 1
+    path: Assets/ColdResources/Scenes/Level 1.unity
+    guid: 65e758e926d43884b918bf70fe80d368
+  - enabled: 1
+    path: Assets/ColdResources/Scenes/Level 2.unity
+    guid: 59fd26d39b2b9b9489cf506ecf35901f
+  - enabled: 1
+    path: Assets/ColdResources/Scenes/Level 3.unity
+    guid: f25eabcfa8daa434d84076ee6b6177ca
   m_configObjects: {}
