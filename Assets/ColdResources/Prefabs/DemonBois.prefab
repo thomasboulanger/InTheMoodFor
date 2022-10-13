@@ -15137,7 +15137,7 @@ GameObject:
   - component: {fileID: 5405194599838704958}
   - component: {fileID: 927207843285863794}
   m_Layer: 0
-  m_Name: Demon
+  m_Name: DemonBois
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15179,8 +15179,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5640656271679616223, guid: 6cfb34064f4685540a197ab61dc52851, type: 3}
-  - {fileID: 6630712129401261784, guid: 6cfb34064f4685540a197ab61dc52851, type: 3}
+  - {fileID: 2100000, guid: 3bf1781552cf3264a9215d61c6858bb1, type: 2}
+  - {fileID: 2100000, guid: 8d8f6b23f71caf6469fe953059cf08a3, type: 2}
   - {fileID: 1280446133571650962, guid: 6cfb34064f4685540a197ab61dc52851, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0

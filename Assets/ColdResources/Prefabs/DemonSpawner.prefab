@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelConfig: {fileID: 11400000, guid: ac00d0b638dd7034ebfcfdc6795bf823, type: 2}
   _demonPrefab:
+  - {fileID: 9193425454313836212, guid: d5288161f43f8be43ab3437bbd994786, type: 3}
+  - {fileID: 9193425454313836212, guid: a8c85ad7db2e0a74d8e3665836ff59b6, type: 3}
+  - {fileID: 9193425454313836212, guid: 71341bc3c2e977244a6e250bda0b6384, type: 3}
   - {fileID: 9193425454313836212, guid: 7c5db0b63d60c3543986146f8e4d1bae, type: 3}
-  - {fileID: 9193425454313836212, guid: 7c5db0b63d60c3543986146f8e4d1bae, type: 3}
-  - {fileID: 9193425454313836212, guid: 7c5db0b63d60c3543986146f8e4d1bae, type: 3}
-  - {fileID: 9193425454313836212, guid: 7c5db0b63d60c3543986146f8e4d1bae, type: 3}
-  _demonAnimationTime: 15
