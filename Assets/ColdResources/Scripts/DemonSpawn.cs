@@ -9,7 +9,6 @@ public class DemonSpawn : MonoBehaviour
 
     [SerializeField] private LevelConfig _levelConfig;
     [SerializeField] private GameObject[] _demonPrefab;
-    [SerializeField] private float _demonAnimationTime;
     
     private List<GameObject> _spawnPoints = new List<GameObject>();
     private List<GameObject> _usableSpawnPoints;
