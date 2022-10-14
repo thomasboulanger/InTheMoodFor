@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DemonSpawnTimer: 070000000a000000140000004000000068000000
   DemonOrderOfElement: 0300000000000000020000000100000002000000
+  LevelDuration: 120

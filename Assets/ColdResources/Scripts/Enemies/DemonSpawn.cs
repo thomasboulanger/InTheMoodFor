@@ -1,34 +1,24 @@
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 public class DemonSpawn : MonoBehaviour
 {
-    //public static List<GameObject> DemonList = new List<GameObject>();
+    public UnityEvent OnStartSpawning, OnLevelFinish;
+    bool _levelRunning = false;
 
     [SerializeField] private LevelConfig _levelConfig;
     [SerializeField] private GameObject[] _demonPrefab;
     [SerializeField] DemonHandler _demonHandler;
     
-    //private List<GameObject> _spawnPoints = new List<GameObject>();
-    //private List<GameObject> _usableSpawnPoints;
-    private int _demonElementIndex;
     private int _demonCounter;
     private float _startTime;
-    private int _dayCounter;
-
 
     private void Start()
     {
         _startTime = Time.time;
-        /*
-        * foreach (GameObject element in GameObject.FindGameObjectsWithTag("SpawnPoint"))
-        * {
-        *     _spawnPoints.Add(element);
-        * }
-        * _usableSpawnPoints = _spawnPoints;
-        */
+        _levelRunning = true;
+        OnStartSpawning?.Invoke();
     }
 
     private void Update()
@@ -39,14 +29,17 @@ public class DemonSpawn : MonoBehaviour
             SpawnDemon(_levelConfig.DemonOrderOfElement[_demonCounter]);
             _demonCounter++;
         }
+
+        if (_levelRunning && currentTime >= _levelConfig.LevelDuration)
+        {
+            _levelRunning = false;
+            OnLevelFinish?.Invoke();
+        }
     }
 
     private void SpawnDemon(int index)
     {
-        //int rnd = Random.Range(0, _usableSpawnPoints.Count);
         GameObject demon = Instantiate(_demonPrefab[index], Vector3.zero, quaternion.identity);
         _demonHandler.AddDemon(demon.GetComponent<DemonInfo>());
-        //_usableSpawnPoints.RemoveAt(rnd);
-        //DemonList.Add(go); 
     }
 }
