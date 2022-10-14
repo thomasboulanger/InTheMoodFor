@@ -6,4 +6,5 @@ public class LevelConfig : ScriptableObject
 {
     public List<int> DemonSpawnTimer;
     public List<int> DemonOrderOfElement;
+    public float LevelDuration;
 }
