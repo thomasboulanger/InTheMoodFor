@@ -14,7 +14,10 @@ public class Rune
 {
     public RuneType Type;
     public float birthTime;
-    public bool IsActive, IsFading;
+    public bool IsActive { get; private set; }
+    public bool IsFading { get; private set; }
+
+    public event Action OnSpawn, OnDespawn, OnStartFading;
 
     public Rune(RuneType type)
     {
@@ -26,4 +29,19 @@ public class Rune
         IsActive = true;
         IsFading = false;
     }
+
+    public void SetActive(bool state)
+    {
+        IsActive = state;
+        if (state) OnSpawn?.Invoke();
+        else OnDespawn?.Invoke();
+    }
+
+    public void SetFading(bool state)
+    {
+        IsFading = state;
+        if (state) OnStartFading?.Invoke();
+    }
+
+
 }

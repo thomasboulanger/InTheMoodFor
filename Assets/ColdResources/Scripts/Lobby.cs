@@ -1,11 +1,8 @@
 using NaughtyAttributes;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviour
 {
@@ -26,10 +23,16 @@ public class Lobby : MonoBehaviour
 
         var runes = new RuneType[]{ RuneType.Water, RuneType.Fire, RuneType.Wood, RuneType.Stone };
         _runesToStart = new RuneType[2];
-        _runesToStart[0] = runes[UnityEngine.Random.Range(0, runes.Length)];
-        _runesToStart[1] = runes.Where(rune => rune != _runesToStart[0]).ToArray()[UnityEngine.Random.Range(0, runes.Length-1)];
+        _runesToStart[0] = runes[Random.Range(0, runes.Length)];
+        _runesToStart[1] = runes.Where(rune => rune != _runesToStart[0]).ToArray()[Random.Range(0, runes.Length-1)];
 
         StartCoroutine(Tutorial());
+    }
+
+    void OnDisable()
+    {
+        _inputReader.OnRuneValidated -= ProcessInput;
+        _inputReader.OnRuneGone -= RuneDisappeared;
     }
 
 

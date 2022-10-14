@@ -97,8 +97,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a0bbebed7f750054f8823dcbf7594c02,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e744ac6f85f8f354f9818a750f059aa4,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -192,6 +194,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a924f22606b7ce148b6365e95835560a, type: 3}
+--- !u!1 &293266268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8256876664449101332, guid: 191c4c1c58441c2468b0ebfce4c5021a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2017709502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &293266271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293266268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c1973ca943f6e4f945af650199e0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRuneAdded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &713150226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713150228}
+  - component: {fileID: 713150227}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &713150227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713150226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357a37270619df54b88b334966612397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: acf962c578908ff4798a3a8f3832932b, type: 2}
+  _demonHandler: {fileID: 293266271}
+  OnRuneSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRuneStartFading:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRuneDespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRuneFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  _runeLifetime: 20
+  _runeFadeDuration: 5
+--- !u!4 &713150228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713150226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1309168709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,6 +282,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2056554690994100810, guid: 733ac398736f13d46ae0883adbdae556,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2056554690994100811, guid: 733ac398736f13d46ae0883adbdae556,
         type: 3}
       propertyPath: m_RootOrder
@@ -431,6 +519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 8256876664449101333, guid: 191c4c1c58441c2468b0ebfce4c5021a,
+        type: 3}
+      propertyPath: _demonHandler
+      value: 
+      objectReference: {fileID: 293266271}
     - target: {fileID: 8256876664449101334, guid: 191c4c1c58441c2468b0ebfce4c5021a,
         type: 3}
       propertyPath: m_RootOrder
