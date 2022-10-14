@@ -5,7 +5,8 @@ using UnityEngine.Events;
 public class RuneHandler : MonoBehaviour
 {
     [SerializeField] WSInputReader _inputReader;
-    public UnityEvent<Rune> OnRuneSpawned, OnRuneStartFading, OnRuneDespawned;
+    [SerializeField] DemonHandler _demonHandler;
+    public UnityEvent<Rune> OnRuneSpawned, OnRuneStartFading, OnRuneDespawned, OnRuneFailed;
 
     [SerializeField]
     float _runeLifetime = 20,
@@ -19,6 +20,11 @@ public class RuneHandler : MonoBehaviour
         _inputReader.OnRuneValidated += SpawnRune;
     }
 
+    void OnDisable()
+    {
+        _inputReader.OnRuneValidated -= SpawnRune;
+    }
+
     private void Update()
     {
         UpdateRunes();
@@ -27,8 +33,18 @@ public class RuneHandler : MonoBehaviour
     public void SpawnRune(RuneType runeType)
     {
         Rune rune = new Rune(runeType);
-        ActiveRunes.Add(rune);
-        OnRuneSpawned?.Invoke(rune);
+        bool success = _demonHandler.TryAddRune(rune);
+
+        if (success)
+        {
+            rune.SetActive(true);
+            ActiveRunes.Add(rune);
+            OnRuneSpawned?.Invoke(rune);
+        }
+        else
+        {
+            OnRuneFailed?.Invoke(rune);
+        }
     }
 
     private void UpdateRunes()
@@ -43,13 +59,13 @@ public class RuneHandler : MonoBehaviour
             
             if (!rune.IsFading && remainingLifetime < _runeFadeDuration)
             {
-                rune.IsFading = true;
+                rune.SetFading(true);
                 OnRuneStartFading?.Invoke(rune);
             }
 
             if (remainingLifetime <= 0f)
             {
-                rune.IsActive = false;
+                rune.SetActive(false);
                 ActiveRunes.RemoveAt(i);
                 OnRuneDespawned?.Invoke(rune);
             }

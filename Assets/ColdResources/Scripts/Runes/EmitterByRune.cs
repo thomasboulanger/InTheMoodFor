@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using FMODUnity;
 using FMOD.Studio;
 
-public class EventByRune : MonoBehaviour
+public class EmitterByRune : MonoBehaviour
 {
     [SerializeField] StudioEventEmitter Water, Fire, Wood, Stone;
 

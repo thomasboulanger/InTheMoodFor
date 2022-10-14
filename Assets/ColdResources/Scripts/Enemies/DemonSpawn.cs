@@ -5,13 +5,14 @@ using Random = UnityEngine.Random;
 
 public class DemonSpawn : MonoBehaviour
 {
-    public static List<GameObject> DemonList = new List<GameObject>();
+    //public static List<GameObject> DemonList = new List<GameObject>();
 
     [SerializeField] private LevelConfig _levelConfig;
     [SerializeField] private GameObject[] _demonPrefab;
+    [SerializeField] DemonHandler _demonHandler;
     
-    private List<GameObject> _spawnPoints = new List<GameObject>();
-    private List<GameObject> _usableSpawnPoints;
+    //private List<GameObject> _spawnPoints = new List<GameObject>();
+    //private List<GameObject> _usableSpawnPoints;
     private int _demonElementIndex;
     private int _demonCounter;
     private float _startTime;
@@ -21,11 +22,13 @@ public class DemonSpawn : MonoBehaviour
     private void Start()
     {
         _startTime = Time.time;
-        foreach (GameObject element in GameObject.FindGameObjectsWithTag("SpawnPoint"))
-        {
-            _spawnPoints.Add(element);
-        }
-        _usableSpawnPoints = _spawnPoints;
+        /*
+        * foreach (GameObject element in GameObject.FindGameObjectsWithTag("SpawnPoint"))
+        * {
+        *     _spawnPoints.Add(element);
+        * }
+        * _usableSpawnPoints = _spawnPoints;
+        */
     }
 
     private void Update()
@@ -40,10 +43,10 @@ public class DemonSpawn : MonoBehaviour
 
     private void SpawnDemon(int index)
     {
-        int rnd = Random.Range(0, _usableSpawnPoints.Count);
-        GameObject go = Instantiate(_demonPrefab[index], _usableSpawnPoints[rnd].transform.position, quaternion.identity);
-        _usableSpawnPoints.RemoveAt(rnd);
-        DemonList.Add(go); 
-        go.transform.LookAt(gameObject.transform);
+        //int rnd = Random.Range(0, _usableSpawnPoints.Count);
+        GameObject demon = Instantiate(_demonPrefab[index], Vector3.zero, quaternion.identity);
+        _demonHandler.AddDemon(demon.GetComponent<DemonInfo>());
+        //_usableSpawnPoints.RemoveAt(rnd);
+        //DemonList.Add(go); 
     }
 }

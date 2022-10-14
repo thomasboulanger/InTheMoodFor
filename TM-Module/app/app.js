@@ -30,7 +30,7 @@
   function draw() {
     background(0);
     // Draw the video
-    image(flippedVideo, 0, 0);
+    image(video, 0, 0);
 
     // Draw the label
     fill(255);

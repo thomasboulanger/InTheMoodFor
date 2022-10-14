@@ -2,27 +2,29 @@ using UnityEngine;
 
 public class DemonInfo : MonoBehaviour
 {
-    private RuneType _type;
+    [field: SerializeField] public RuneType Type { get; private set; }
     private Animator _animator;    
     private bool IsRuned;
     private bool _gameOver;
 
-    private void Start()
+    private void OnEnable()
     {
         _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (IsRuned)
-        {
-            _animator.speed = 0;
-        }
-        else
-        {
-            _animator.speed = 1;
-        }
         
+    }
+
+    public void Ward()
+    {
+        _animator.speed = 0;
+    }
+
+    public void Unward()
+    {
+        _animator.speed = 1;
     }
 
     public void HasFinishedAnimation()

@@ -28,6 +28,18 @@ public class WSInputReader : ScriptableObject
         _releaseProgress = 0,
         _validationBreakerProgress = 0;
 
+    public void Init()
+    {
+        _bufferedRune = RuneType.None;
+
+        _isValidatingInput = false;
+        _isWaitingForRelease = false;
+
+        _validationProgress = 0;
+        _validationBreakerProgress = 0;
+        _releaseProgress = 0;
+    }
+
     public void ReadMessage(string message)
     {
         Process(message);
@@ -56,7 +68,7 @@ public class WSInputReader : ScriptableObject
             else
             {
                 _validationBreakerProgress++;
-                if(_validationProgress>0) _validationProgress--;
+                if (_validationProgress > 0) _validationProgress--;
             }
         }
 

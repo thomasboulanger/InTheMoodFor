@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374c651dd196acb43911ccfe3edc7644, type: 3}
   m_Name: WS Input Reader
   m_EditorClassIdentifier: 
-  _validationAmount: 75
-  _releaseAmount: 25
+  _validationAmount: 50
+  _releaseAmount: 15
   _validationBreakerAmount: 5
   _isValidatingInput: 0
   _isWaitingForRelease: 0
-  _bufferedRune: 0
+  _bufferedRune: 1
   _validationProgress: 0
   _releaseProgress: 0
-  _validationBreakerProgress: 0
+  _validationBreakerProgress: 5
